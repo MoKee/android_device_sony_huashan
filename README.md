@@ -3,7 +3,7 @@ Sony Xperia SP
 
 The Sony Xperia SP (codenamed _"HuaShan"_) is a mid-range smartphone from Sony Mobile.
 
-It was announced on 18 March 2013. It is supported in MoKee OpenSource 10.2 and MoKee OpenSource 11.
+It was announced on 18 March 2013. It is supported in MoKee OpenSource 43 and MoKee OpenSource 44.
 
 Basic   | Spec Sheet
 -------:|:-------------------------
