@@ -1,4 +1,4 @@
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2015 The MoKee OpenSource Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ TARGET_SPECIFIC_HEADER_PATH += device/sony/huashan/include
 
 # Kernel properties
 TARGET_KERNEL_SOURCE := kernel/sony/msm8x60
-TARGET_KERNEL_CONFIG := cm_viskan_huashan_defconfig
+TARGET_KERNEL_CONFIG := mokee_viskan_huashan_defconfig
 
 # Platform
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
@@ -55,7 +55,7 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 
 BOARD_USE_SONY_MACUPDATE := true
 
-BOARD_HARDWARE_CLASS := device/sony/huashan/cmhw
+BOARD_HARDWARE_CLASS := device/sony/huashan/mkhw
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
