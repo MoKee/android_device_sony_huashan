@@ -129,6 +129,9 @@ on boot
     # Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
 
+    # FM
+    chmod 0644 /dev/radio0
+    chown fm_radio fm_radio /dev/radio0
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
@@ -503,11 +506,11 @@ on property:ro.data.large_tcp_window_size=true
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled
 
