@@ -78,6 +78,15 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/sony/huashan/bluetooth
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 
+# Healthd
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+BACKLIGHT_PATH := /sys/devices/i2c-10/10-0040/leds/lcd-backlight1/brightness
+SECONDARY_BACKLIGHT_PATH := /sys/devices/i2c-10/10-0040/leds/lcd-backlight2/brightness
+RED_LED_PATH := /sys/devices/i2c-10/10-0047/leds/LED1_R/brightness
+GREEN_LED_PATH := /sys/devices/i2c-10/10-0047/leds/LED1_G/brightness
+BLUE_LED_PATH := /sys/devices/i2c-10/10-0047/leds/LED1_B/brightness
+
 # Needed for blobs
 TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
@@ -99,6 +108,11 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := C5302,C5303,C5306,huashan
+
+TARGET_DISPLAY_USE_RETIRE_FENCE := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+HAVE_ADRENO_SOURCE := false
 
 # Audio
 BOARD_USES_LEGACY_ALSA_AUDIO := true
@@ -130,6 +144,7 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_UNION += \
     file_contexts \
     file.te \
+    healthd.te \
     hostapd.te \
     illumination.te \
     init.te \
