@@ -144,8 +144,6 @@ TARGET_USES_C2D_COMPOSITION := true
 
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-HAVE_ADRENO_SOURCE := false
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -183,7 +181,6 @@ BOARD_SEPOLICY_UNION += \
     file.te \
     healthd.te \
     hostapd.te \
-    illumination.te \
     init.te \
     init_shell.te \
     kernel.te \
@@ -202,10 +199,10 @@ BOARD_SEPOLICY_UNION += \
     shell.te \
     surfaceflinger.te \
     system_app.te \
-    system_monitor.te \
     system_server.te \
     tad_static.te \
     ta_qmi_service.te \
+    thermanager.te \
     updatemiscta.te \
     vold.te
 
