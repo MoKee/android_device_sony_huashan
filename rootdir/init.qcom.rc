@@ -80,7 +80,6 @@ on early-boot
     write /dev/wcnss_wlan 1
 
 on boot
-    exec /system/bin/btnvtool -O
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -111,9 +110,6 @@ on boot
     chmod 2755 /data/misc/perfd
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
-
-    # Remove SUID bit for iproute2 ip tool
-    chmod 0755 /system/bin/ip
 
     # port-bridge
     chmod 0660 /dev/smd0
@@ -215,6 +211,11 @@ on boot
 
 on charger
     stop bootlogo
+
+on property:sys.boot_from_charger_mode=1
+    # Display backlight
+    write /sys/class/leds/lcd-backlight1/brightness 63
+    write /sys/class/leds/lcd-backlight2/brightness 63
 
 # msm specific files that need to be created on /data
 on post-fs-data
