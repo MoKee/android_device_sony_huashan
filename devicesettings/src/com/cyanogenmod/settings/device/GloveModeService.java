@@ -108,7 +108,12 @@ public class GloveModeService extends Service {
     };
 
     private boolean isGloveModeEnabled() {
-        return (MKSettings.System.getInt(mContext.getContentResolver(),
-                MKSettings.System.HIGH_TOUCH_SENSITIVITY_ENABLE, 0) == 1);
+        int HighTouchSensitivity = MKSettings.System.getInt(mContext.getContentResolver(),
+                MKSettings.System.HIGH_TOUCH_SENSITIVITY_ENABLE, -1);
+        if (HighTouchSensitivity == -1 && MKSettings.System.putInt(mContext.getContentResolver(),
+                MKSettings.System.HIGH_TOUCH_SENSITIVITY_ENABLE, 1)) {
+            HighTouchSensitivity = 1;
+        }
+        return HighTouchSensitivity == 1;
     }
 }
