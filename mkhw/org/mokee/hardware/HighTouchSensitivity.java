@@ -16,8 +16,7 @@
 
 package org.mokee.hardware;
 
-import java.io.File;
-import org.mokee.hardware.util.FileUtils;
+import org.mokee.internal.util.FileUtils;
 
 /**
  * Glove mode / high touch sensitivity
@@ -32,8 +31,7 @@ public class HighTouchSensitivity {
      * @return boolean Supported devices must return always true
      */
     public static boolean isSupported() {
-        File f = new File(GLOVE_PATH);
-        return f.exists();
+        return FileUtils.isFileWritable(GLOVE_PATH);
     }
 
     /**
