@@ -25,7 +25,7 @@ import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import cyanogenmod.providers.CMSettings;
+import mokee.providers.MKSettings;
 
 public class TouchscreenGestureSettings extends PreferenceActivity {
 
@@ -70,8 +70,8 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mHapticFeedback.setChecked(CMSettings.System.getInt(getContentResolver(),
-                CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
+        mHapticFeedback.setChecked(MKSettings.System.getInt(getContentResolver(),
+                MKSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
         getListView().setPadding(0, 0, 0, 0);
     }
 
@@ -132,8 +132,8 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
             final String key = preference.getKey();
             if (KEY_HAPTIC_FEEDBACK.equals(key)) {
                 final boolean value = (Boolean) newValue;
-                CMSettings.System.putInt(getContentResolver(),
-                        CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
+                MKSettings.System.putInt(getContentResolver(),
+                        MKSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
                 return true;
             }
             return false;
