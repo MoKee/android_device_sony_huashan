@@ -73,37 +73,6 @@ static unsigned int g_leds_ARGB = 0;
 static int g_delayOn = -1;
 static int g_delayOff = -1;
 
-/* === Module init_globals === */
-void
-init_globals(void) {
-
-    int i, c;
-
-    /* Device mutex */
-    pthread_mutex_init(&g_lock, NULL);
-
-    /* Module notifications */
-    memset(&g_notification, 0, sizeof(g_notification));
-    memset(&g_battery, 0, sizeof(g_battery));
-    g_delayOn = -1;
-    g_delayOff = -1;
-
-    /* Module paths */
-    for (i = 1; i <= LEDS_UNIT_COUNT; ++i) {
-        for (c = 0; c < LEDS_COLORS_COUNT; ++c) {
-            sprintf(path_ledbrightn[(i - 1) * LEDS_COLORS_COUNT + c],
-                    LEDS_COLORS_BRIGHTNESS_FILE, i, leds_colors[c]);
-            sprintf(path_ledcurrent[(i - 1) * LEDS_COLORS_COUNT + c],
-                    LEDS_COLORS_CURRENT_FILE, i, leds_colors[c]);
-        }
-    }
-
-    /* Module sequencers */
-    for (i = 0; i < LEDS_SEQ_COUNT; ++i) {
-        g_leds_sequencers[i] = LEDS_SEQ_UNKNOWN;
-    }
-}
-
 /* === Module write_int === */
 static int
 write_int(char const* path, int value) {
@@ -143,6 +112,51 @@ write_string(char const* path, const char *value) {
     else {
         ALOGE("write_string failed to open %s (%s)\n", path, strerror(errno));
         return -errno;
+    }
+}
+
+/* === Module init_globals === */
+void
+init_globals(void) {
+
+    char color_id[2];
+    char path[MAX_PATH_SIZE];
+    int i, c, value;
+
+    /* Device mutex */
+    pthread_mutex_init(&g_lock, NULL);
+
+    /* Module notifications */
+    memset(&g_notification, 0, sizeof(g_notification));
+    memset(&g_battery, 0, sizeof(g_battery));
+    g_delayOn = -1;
+    g_delayOff = -1;
+
+    /* Module paths */
+    for (i = 1; i <= LEDS_UNIT_COUNT; ++i) {
+        for (c = 0; c < LEDS_COLORS_COUNT; ++c) {
+            sprintf(path_ledbrightn[(i - 1) * LEDS_COLORS_COUNT + c],
+                    LEDS_COLORS_BRIGHTNESS_FILE, i, leds_colors[c]);
+            sprintf(path_ledcurrent[(i - 1) * LEDS_COLORS_COUNT + c],
+                    LEDS_COLORS_CURRENT_FILE, i, leds_colors[c]);
+
+            /* Initialize color_id controls */
+            sprintf(path, LEDS_COLORS_COLOR_ID_FILE, i, leds_colors[c]);
+            color_id[0] = leds_colors[c];
+            color_id[1] = 0;
+            write_string(path, color_id);
+
+            /* Initialize effects_current controls */
+            sprintf(path, LEDS_COLORS_EFFECTS_CURRENT_FILE, i, leds_colors[c]);
+            value = (LEDS_COLORS_EFFECTS_CURRENT_RATIO * leds_currents[i-1][c])
+                    / LEDS_COLORS_CURRENT_MAXIMUM;
+            write_int(path, value);
+        }
+    }
+
+    /* Module sequencers */
+    for (i = 0; i < LEDS_SEQ_COUNT; ++i) {
+        g_leds_sequencers[i] = LEDS_SEQ_UNKNOWN;
     }
 }
 
