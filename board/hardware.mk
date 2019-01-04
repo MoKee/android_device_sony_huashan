@@ -1,8 +1,8 @@
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Lineage Hardware
+# MK Hardware
 ifeq ($(BOARD_AOSP_BASED),)
 BOARD_HARDWARE_CLASS += \
-    $(DEVICE_PATH)/lineagehw
+    $(DEVICE_PATH)/mkhw
 endif

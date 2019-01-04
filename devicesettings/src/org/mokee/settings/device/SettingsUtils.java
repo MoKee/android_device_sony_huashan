@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.device;
+package org.mokee.settings.device;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -30,7 +30,7 @@ public class SettingsUtils {
     public static final String TAG = "SettingsUtils";
 
     public static final String PREFERENCES = "SettingsUtilsPreferences";
-    public static final String SETTINGS_CLASS = "lineageos.providers.LineageSettings$System";
+    public static final String SETTINGS_CLASS = "mokee.providers.MKSettings$System";
 
     public static final String LIGHTS_EFFECTS_MUSIC_ALWAYS =
             "LIGHTS_EFFECTS_MUSIC_ALWAYS";

@@ -24,7 +24,7 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
 
 ifeq ($(BOARD_AOSP_BASED),)
     LOCAL_STATIC_JAVA_LIBRARIES += \
-        org.lineageos.platform.sdk
+        org.mokee.platform.sdk
 endif
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags

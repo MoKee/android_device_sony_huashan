@@ -1,8 +1,8 @@
--keep class org.lineageos.settings.device.* {
+-keep class org.mokee.settings.device.* {
   *;
 }
 
--keep class lineageos.providers.LineageSettings$System {
+-keep class mokee.providers.MKSettings$System {
     public static final java.lang.String HIGH_TOUCH_SENSITIVITY_ENABLE;
     public static final java.lang.String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK;
 }
